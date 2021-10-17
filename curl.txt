@@ -1,7 +1,8 @@
 // Hello palenca
 
-curl --location --request GET 'http://127.0.0.1:3000'
+curl --location --request GET 'http://127.0.0.1:8000'
 
+// successful login
 curl --location --request POST 'http://127.0.0.1:8000/uber/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -9,9 +10,18 @@ curl --location --request POST 'http://127.0.0.1:8000/uber/login' \
    "password": "MyPwdChingon123"
 }'
 
+// not successful login
 curl --location --request POST 'http://127.0.0.1:8000/uber/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
    "email": "pierre@palenca.com",
-   "password": "MyPwdChingon123"
+   "password": "MyPwdChingon122"
 }'
+
+// get profile success
+curl --location --request GET 'http://127.0.0.1:8000/uber/get-profile/cTV0aWFuQ2NqaURGRE82UmZXNVBpdTRxakx3V1F5' \
+--header 'Content-Type: application/json'
+
+// get profile err
+curl --location --request GET 'http://127.0.0.1:8000/uber/get-profile/cTV0aWFuQ2NqaURGRE82UmZXNVBpdTRxakx3V1F3' \
+--header 'Content-Type: application/json'
