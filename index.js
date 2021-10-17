@@ -3,6 +3,7 @@ const app = express()
 const port = 8000
 const { generateToken } = require('./auth')
 const { getProfile } = require('./profile')
+const { validateCredentials } = require('./validation')
 
 // middleware for parsing request body
 app.use(express.json())
@@ -16,6 +17,17 @@ app.get('/', (req, res) => {
 
 app.post('/uber/login', (req, res) => {
     const { email, password } = req.body
+    const areValidCredentials = validateCredentials(email, password)
+
+    if (!areValidCredentials) {
+        res.status(401)
+        res.json({
+            message: 'INVALID_FORMAT',
+            details: 'Credentials should ve a valid email address and password > 5 characters'
+        })
+        return
+    }
+
     const token = generateToken(email, password);
     if (token) {
         res.status(200)
