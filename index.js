@@ -7,6 +7,9 @@ const { getProfile } = require('./profile')
 // middleware for parsing request body
 app.use(express.json())
 
+// in a more complex app the endpoints would be grouped in folders
+// each folder would export an express router object to register routes
+
 app.get('/', (req, res) => {
   res.send('Hello Palenca!')
 })

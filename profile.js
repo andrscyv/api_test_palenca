@@ -13,6 +13,8 @@ const profiles = {
         "lifetime_trips": 1254,
     }
 }
+// in real scenario we would decode jwt token to get userId and get 
+// data from db
 module.exports.getProfile = function(accessToken) {
     return profiles[accessToken];
 }
